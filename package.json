@@ -1,0 +1,82 @@
+{
+  "name": "rails-form-inputs",
+  "version": "1.0.0",
+  "description": "React component to turn an object into Rails compatible form inputs",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "lint": "eslint . --ext .js --ext .jsx",
+    "test": "jest",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && swc src --ignore **/*.test.{jsx,js} -d ./dist --source-maps true",
+    "prepublishOnly": "npm run lint && npm run test && npm run build"
+  },
+  "author": "Daniel Lewis",
+  "devDependencies": {
+    "@citizensadvice/form-to-rack-params": "citizensadvice/form-to-rack-params#v1.0.0",
+    "@swc/jest": "^0.2.20",
+    "@testing-library/react": "^13.0.0",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "jest": "^27.5.1",
+    "jest-environment-jsdom": "^27.5.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "prop-types": ">= 15.5.7",
+    "react": ">= 15"
+  },
+  "eslintConfig": {
+    "extends": "airbnb",
+    "env": {
+      "browser": true
+    },
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "rules": {
+      "import/prefer-default-export": "off",
+      "no-continue": "off",
+      "no-restricted-syntax": "off",
+      "react/forbid-prop-types": "off",
+      "react/no-unused-prop-types": "off",
+      "react/react-in-jsx-scope": "off"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.test.{jsx,js}"
+        ],
+        "env": {
+          "jest": true
+        },
+        "plugins": [
+          "jest"
+        ],
+        "rules": {
+          "react/jsx-no-bind": "off",
+          "react/jsx-props-no-spreading": "off"
+        }
+      }
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(t|j)sx?$": [
+        "@swc/jest"
+      ]
+    },
+    "testEnvironment": "jsdom",
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!@citizensadvice/form-to-rack-params.*)"
+    ]
+  }
+}

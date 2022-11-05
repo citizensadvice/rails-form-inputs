@@ -272,6 +272,66 @@ it('serializes a complex object', () => {
   });
 });
 
+// These tests are adapted from https://github.com/rack/rack/blob/main/test/spec_utils.rb describe.each([
+describe.each([
+  ['', {}],
+  ['foo=', { foo: '' }],
+  ['foo="bar"', { foo: '"bar"' }],
+  ['foo=1&bar=2', { foo: '1', bar: '2' }],
+  ['foo=bar&baz=', { foo: 'bar', baz: '' }],
+  ['my+weird+field=q1!2"\'w%245%267%2Fz8)%3F', { 'my weird field': 'q1!2"\'w$5&7/z8)?' }],
+  ['a=b&pid%3D1234=1023', { a: 'b', 'pid=1234': '1023' }],
+  ['foo[]=', { foo: [''] }],
+  ['foo[]=bar', { foo: ['bar'] }],
+  ['foo[]=bar&foo[=baz', { foo: ['bar'], 'foo[': 'baz' }],
+  ['foo[]=bar&foo[]=', { foo: ['bar', ''] }],
+  ['foo[]=1&foo[]=2', { foo: ['1', '2'] }],
+  ['foo=bar&baz[]=1&baz[]=2&baz[]=3', { foo: 'bar', baz: ['1', '2', '3'] }],
+  ['foo[]=bar&baz[]=1&baz[]=2&baz[]=3', { foo: ['bar'], baz: ['1', '2', '3'] }],
+  ['x[y][z]=1', { x: { y: { z: '1' } } }],
+  ['x[y][z][]=1', { x: { y: { z: ['1'] } } }],
+  ['x[y][z][]=1&x[y][z][]=2', { x: { y: { z: ['1', '2'] } } }],
+  ['x[y][][z]=1', { x: { y: [{ z: '1' }] } }],
+  ['x[y][][z][]=1', { x: { y: [{ z: ['1'] }] } }],
+  ['x[y][][z]=1&x[y][][w]=2', { x: { y: [{ z: '1', w: '2' }] } }],
+  ['x[y][][v][w]=1', { x: { y: [{ v: { w: '1' } }] } }],
+  ['x[y][][z]=1&x[y][][v][w]=2', { x: { y: [{ z: '1', v: { w: '2' } }] } }],
+  ['x[y][][z]=1&x[y][][z]=2', { x: { y: [{ z: '1' }, { z: '2' }] } }],
+  ['x[y][][z]=1&x[y][][w]=a&x[y][][z]=2&x[y][][w]=3', { x: { y: [{ z: '1', w: 'a' }, { z: '2', w: '3' }] } }],
+  ['x[][y]=1&x[][z][w]=a&x[][y]=2&x[][z][w]=b', { x: [{ y: '1', z: { w: 'a' } }, { y: '2', z: { w: 'b' } }] }],
+  ['x[][z][w]=a&x[][y]=1&x[][z][w]=b&x[][y]=2', { x: [{ z: { w: 'a' }, y: '1' }, { z: { w: 'b' }, y: '2' }] }],
+  ['data[books][][data][page]=1&data[books][][data][page]=2', { data: { books: [{ data: { page: '1' } }, { data: { page: '2' } }] } }],
+  ['x[][y][][z]=1&x[][y][][w]=2', { x: [{ y: [{ z: '1', w: '2' }] }] }],
+  [
+    'x[][id]=1&x[][y][a]=5&x[][y][b]=7&x[][z][id]=3&x[][z][w]=0&x[][id]=2&x[][y][a]=6&x[][y][b]=8&x[][z][id]=4&x[][z][w]=0',
+    {
+      x: [
+        { id: '1', y: { a: '5', b: '7' }, z: { id: '3', w: '0' } },
+        { id: '2', y: { a: '6', b: '8' }, z: { id: '4', w: '0' } },
+      ],
+    },
+  ],
+  [
+    '[]=1&[a]=2&b[=3&c]=4',
+    {
+      '[]': '1',
+      '[a]': '2',
+      'b[': '3',
+      'c]': '4',
+    },
+  ],
+  ['d[[]=5&e][]=6&f[[]]=7', { d: { '[': '5' }, 'e]': ['6'], f: { '[': { ']': '7' } } }],
+  ['g[h][i]=8&j[k]l[m]=9', { g: { h: { i: '8' } }, j: { k: { 'l[m]': '9' } } }],
+  ['l[[[[[[[[]]]]]]]=10', { l: { '[[[[[[[': { ']]]]]]': '10' } } }],
+  ['[foo]=1', { '[foo]': '1' }],
+  ['[foo][bar]=1', { '[foo]': { bar: '1' } }],
+])('%s', (query, object) => {
+  it('is generated from object', () => {
+    render(<Form value={object} />);
+    expect(decodeURI(new URLSearchParams(new FormData(screen.getByRole('form'))).toString())).toEqual(query);
+  });
+});
+
 describe('transform', () => {
   it('omits keys that are transformed to undefined', () => {
     const data = {

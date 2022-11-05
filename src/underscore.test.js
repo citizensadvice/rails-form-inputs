@@ -32,15 +32,3 @@ describe.each([
     expect(underscore(a)).toEqual(b);
   });
 });
-
-// inflect.acronym("API")
-// inflect.acronym("HTML")
-// inflect.acronym("HTTP")
-// inflect.acronym("RESTful")
-// inflect.acronym("W3C")
-// inflect.acronym("PhD")
-// inflect.acronym("RoR")
-// inflect.acronym("SSL")
-//  @acronym_regex = @acronyms.empty? ? /(?=a)b/ : /#{@acronyms.values.join("|")}/
-// @acronyms_camelize_regex   = /^(?:#{@acronym_regex}(?=\b|[A-Z_])|\w)/
-// @acronyms_underscore_regex = /(?:(?<=([A-Za-z\d]))|\b)(#{@acronym_regex})(?=\b|[^a-z])/

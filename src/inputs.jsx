@@ -49,7 +49,14 @@ export function* inputs({
     } else if (isArrayItem) {
       name += '[]';
     } else {
-      name += `[${keepKey || !snakeCase ? property : underscore(property)}]`;
+      // The escaping rules for [ and ] in a name are based on rack test suite
+      // https://github.com/rack/rack/blob/main/test/spec_utils.rb describe.each([
+      const part = keepKey || !snakeCase ? property : underscore(property);
+      if ((part.includes('[') || part.includes(']')) && part[0] !== '[') {
+        name += part;
+      } else {
+        name += `[${part}]`;
+      }
     }
 
     let key = property;

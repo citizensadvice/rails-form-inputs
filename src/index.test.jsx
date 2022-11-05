@@ -173,6 +173,21 @@ it('serialises a map', () => {
   });
 });
 
+it('serialises non-string properties', () => {
+  const data = {
+    map: new Map([[0, 'one'], [null, 'two'], [Symbol('third'), 'three'], [{ toString() { return 'fourth'; } }, 'four']]),
+  };
+  render(<Form value={data} />);
+  expect(formToRackParams(screen.getByRole('form'))).toEqual({
+    map: {
+      0: 'one',
+      null: 'two',
+      'symbol(third)': 'three',
+      fourth: 'four',
+    },
+  });
+});
+
 it('serialises a custom iterator', () => {
   function* iterator() {
     let i = 0;

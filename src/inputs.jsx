@@ -43,6 +43,7 @@ export function* inputs({
       continue;
     }
 
+    property = String(property);
     let name = prefix;
     if (depth === 0) {
       name += keepKey || !snakeCase ? property : underscore(property);

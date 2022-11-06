@@ -2,25 +2,57 @@ import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { underscore } from './underscore';
 
-export function* inputs({
+interface InputProps {
+  prefix?: string,
+  value: object | Iterable<any>,
+  transform?: (key: object, value: any) => void | [object, any] | false,
+  isArrayItem?: boolean,
+  snakeCase?: boolean,
+  depth?: number,
+}
+
+export const Inputs : React.FC<InputProps> = memo(
+  // Has to type as any as React.FC does not accept an array because https://github.com/DefinitelyTyped/DefinitelyTyped/issues/41808
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+  (props : InputProps) => [...inputs(props)] as any,
+);
+
+Inputs.propTypes = {
+  prefix: PropTypes.string,
+  value: PropTypes.any.isRequired,
+  depth: PropTypes.number,
+  isArrayItem: PropTypes.bool,
+  snakeCase: PropTypes.bool,
+  transform: PropTypes.func,
+};
+
+Inputs.defaultProps = {
+  depth: 0,
+  prefix: '',
+  isArrayItem: false,
+  snakeCase: true,
+  transform: undefined,
+};
+
+Inputs.displayName = 'Inputs';
+
+function* inputs({
   value,
   prefix = '',
   depth = 0,
   isArrayItem = false,
   transform,
   snakeCase = true,
-}) {
-  let iterator = value;
-
-  if (!value[Symbol.iterator]) {
-    iterator = Object.entries(value);
-  }
+} : InputProps) {
+  const iterator : Iterable<any> = Symbol.iterator in value
+    ? value as Iterable<any>
+    : Object.entries(value);
 
   let index = -1;
   for (const next of iterator) {
     index += 1;
     let keepKey = false;
-    let property = index;
+    let property : any = index;
     let item = next;
 
     // An object or map will return [key, value] pairs
@@ -34,7 +66,7 @@ export function* inputs({
         continue;
       }
       if (transformed) {
-        [property, item] = transform(property, item);
+        [property, item] = transformed;
         keepKey = true;
       }
     }
@@ -95,20 +127,3 @@ export function* inputs({
     yield <input type="hidden" key={key} name={name} value={item} />;
   }
 }
-
-const Inputs = memo((props) => [...inputs(props)]);
-
-Inputs.propTypes = {
-  prefix: PropTypes.string.isRequired,
-  value: PropTypes.any.isRequired,
-  depth: PropTypes.number.isRequired,
-  isArrayItem: PropTypes.bool,
-  snakeCase: PropTypes.bool,
-};
-
-Inputs.defaultProps = {
-  isArrayItem: false,
-  snakeCase: true,
-};
-
-Inputs.displayName = 'Inputs';

@@ -60,16 +60,18 @@ If true (default) the keys will be converted to snake case.
 
 ## Developing
 
-This uses [SWC](https://swc.rs/).
-
-Make sure you build to create the `dist` files if you create a new version as this is not published to npm.
-
 ```bash
 npm install
+
+# Lint and typecheck
+npm run lint
 
 # Test
 npm test
 
 # Build
 npm build
+
+# Release a new version
+npx np
 ```

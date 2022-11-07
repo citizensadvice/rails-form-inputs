@@ -1,20 +1,25 @@
 {
   "name": "rails-form-inputs",
-  "version": "1.0.0",
+  "version": "1.0.0-dev.1",
   "description": "React component to turn an object into Rails compatible form inputs",
   "type": "module",
   "main": "./dist/index.js",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
     "lint": "eslint . --ext .ts --ext .tsx --ext .js --ext .jsx && tsc --noEmit",
     "test": "jest",
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc --declaration --sourceMap --declarationMap --noEmitOnError",
     "build:swc": "npm run clean && swc src --ignore **/*.test.{jsx,js} -d ./dist --source-maps true",
-    "prepublishOnly": "npm run lint && npm run test && npm run build"
+    "preversion": "npm run lint",
+    "prepublishOnly": "npm run build"
   },
-  "author": "mrdaniellewis@github.com",
+  "author": "github@mrdaniellewis.co.uk",
+  "license": "ISC",
   "devDependencies": {
-    "@citizensadvice/form-to-rack-params": "citizensadvice/form-to-rack-params#v1.0.0",
+    "@citizensadvice/form-to-rack-params": "v1.2.0",
     "@swc/cli": "^0.1.57",
     "@swc/jest": "^0.2.23",
     "@testing-library/react": "^13.4.0",

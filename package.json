@@ -1,6 +1,6 @@
 {
   "name": "rails-form-inputs",
-  "version": "1.0.0-dev.1",
+  "version": "1.0.0-alpha.1",
   "description": "React component to turn an object into Rails compatible form inputs",
   "type": "module",
   "main": "./dist/index.js",
@@ -94,5 +94,8 @@
   },
   "np": {
     "yarn": false
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

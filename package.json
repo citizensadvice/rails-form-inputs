@@ -94,5 +94,8 @@
   },
   "np": {
     "yarn": false
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

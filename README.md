@@ -1,4 +1,6 @@
-# `RailsFormInputs`
+# `<RailsFormInputs>`
+
+[![npm version](https://badge.fury.io/js/@citizensadvice%2Frails-form-inputs.svg)](https://badge.fury.io/js/@citizensadvice%2Frails-form-inputs)
 
 A React component to turn an object into Rails compatible form inputs.
 
@@ -31,7 +33,7 @@ Outputs:
 ```
 <RailsFormInputs
   value={value: Object} 
-  transform={tranform: Function}
+  transform={tranform: (key: object, value: any) => void | [object, any] | false)}
   snakeCase={snakeCase = true: Boolean}
 />
 ```

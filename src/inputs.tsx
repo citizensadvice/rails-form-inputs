@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
-import { underscore } from './underscore';
+import { underscore } from './underscore.js';
 
 interface InputProps {
   prefix?: string,

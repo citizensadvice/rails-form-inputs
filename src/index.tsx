@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
-import { Inputs } from './inputs';
+import { Inputs } from './inputs.js';
 
 interface RailsFormInputsProps {
   value: object | Iterable<any>,

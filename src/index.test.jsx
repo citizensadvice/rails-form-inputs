@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/react';
+import React, { screen, render } from '@testing-library/react';
 import formToRackParams from '@citizensadvice/form-to-rack-params';
 import RailsFormInputs from '.';
 

@@ -1,5 +1,5 @@
 # Changelog
 
-## [1.0.0-alpha.1]
+## [v1.0.0] 2022-11-09
 
 - Initial release

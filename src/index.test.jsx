@@ -236,6 +236,75 @@ it('keeps _destroy', () => {
   });
 });
 
+it('does not error for an undefined value', () => {
+  const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  render(<Form value={undefined} />);
+  expect(formToRackParams(screen.getByRole('form'))).toEqual({});
+  expect(spy).toHaveBeenCalled();
+});
+
+it('does not error for a null value', () => {
+  const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  render(<Form value={null} />);
+  expect(formToRackParams(screen.getByRole('form'))).toEqual({});
+  expect(spy).toHaveBeenCalled();
+});
+
+it('does not error for a string value', () => {
+  const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  render(<Form value="foo" />);
+  expect(formToRackParams(screen.getByRole('form'))).toEqual({});
+  expect(spy).toHaveBeenCalled();
+});
+
+it('ignores undefined array values', () => {
+  const data = {
+    foo: [undefined, 'bar'],
+  };
+  render(<Form value={data} />);
+  expect(formToRackParams(screen.getByRole('form'))).toEqual({
+    foo: ['bar'],
+  });
+});
+
+it('treats an array of only undefined values as empty', () => {
+  const data = {
+    foo: [undefined, undefined],
+  };
+  render(<Form value={data} />);
+  expect(formToRackParams(screen.getByRole('form'))).toEqual({
+    foo: [''],
+  });
+});
+
+it('treats a set of only undefined values as empty', () => {
+  const data = {
+    foo: new Set([undefined, undefined]),
+  };
+  render(<Form value={data} />);
+  expect(formToRackParams(screen.getByRole('form'))).toEqual({
+    foo: [''],
+  });
+});
+
+it('ignores undefined iterator values', () => {
+  function* iterator() {
+    yield ['a', '1'];
+    yield ['b', undefined];
+    yield ['c', null];
+  }
+  const data = {
+    iterator: iterator(),
+  };
+  render(<Form value={data} />);
+  expect(formToRackParams(screen.getByRole('form'))).toEqual({
+    iterator: {
+      a: '1',
+      c: '',
+    },
+  });
+});
+
 it('serializes a complex object', () => {
   const data = {
     caseNote: {

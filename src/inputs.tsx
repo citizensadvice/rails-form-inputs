@@ -36,6 +36,10 @@ Inputs.defaultProps = {
 
 Inputs.displayName = 'Inputs';
 
+function emptyArray(item: any) : boolean {
+  return (Array.isArray(item) || item instanceof Set) && ![...item].some((v) => v !== undefined);
+}
+
 function* inputs({
   value,
   prefix = '',
@@ -44,6 +48,9 @@ function* inputs({
   transform,
   snakeCase = true,
 } : InputProps) {
+  if (!value || typeof value !== 'object') {
+    return;
+  }
   const iterator : Iterable<any> = Symbol.iterator in value
     ? value as Iterable<any>
     : Object.entries(value);
@@ -97,7 +104,7 @@ function* inputs({
       key += `_${index}`;
     }
 
-    if ((Array.isArray(item) && item.length === 0) || (item instanceof Set && item.size === 0)) {
+    if (emptyArray(item)) {
       // For an empty array, include a default item for arrays so Rails will know they are empty
       key = `${key}[]`;
       name = `${name}[]`;

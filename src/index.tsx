@@ -1,10 +1,12 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+
 import { Inputs } from './inputs.js';
+import { Data, Transform } from './types';
 
 interface RailsFormInputsProps {
-  value: object | Iterable<any>,
-  transform?: (key: object, value: any) => void | [object, any] | false,
+  value: Data,
+  transform?: Transform,
   snakeCase?: boolean,
 }
 
@@ -28,3 +30,4 @@ RailsFormInputs.defaultProps = {
 RailsFormInputs.displayName = 'RailsFormInputs';
 
 export default RailsFormInputs;
+export { toRailsFormData } from './to_rails_form_data.js';

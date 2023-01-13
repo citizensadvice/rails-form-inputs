@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.2.0] 2023-01-13
+
+- Added `toRailsFormData` to convert an object to a `FormData` instance
+
 ## [v1.1.0] 2022-11-10
 
 - Providing a non-object `value` will now not result in JavaScript error. It will still result in a prop-type error.

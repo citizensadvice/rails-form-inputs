@@ -60,6 +60,19 @@ An optional transform function.  The arguments are the key and value pair.
 
 If true (default) the keys will be converted to snake case.
 
+## `toRailsFormData(data, { transform, snakeCase = true })`
+
+Convert the object to a `FormData` object.
+
+```js
+import { toRailsFormData } from '@citizensadvice/rails-form-inputs';
+
+const formData = toRailsFormData({ myObject: { foo: 'bar' }, array: [1, 2] });
+
+new URLSearchParams(formData).toString()
+// => ?my_object[foo]=bar&array[]=1&array[]=2
+```
+
 ## Developing
 
 ```bash
@@ -72,7 +85,7 @@ npm run lint
 npm test
 
 # Build
-npm build
+npm run build
 
 # Release a new version
 npx np

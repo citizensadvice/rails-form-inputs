@@ -27,8 +27,8 @@ Inputs.defaultProps = {
   snakeCase: true,
   transform: undefined,
   // eslint-disable-next-line react/jsx-props-no-spreading
-  yieldObject: (props: InputsProps) => [<Inputs {...props} />],
-  yieldValue: ({ key, name, value }) => <input type="hidden" key={key} name={name} value={value} />,
+  yieldObject: ({ key, ...props }) => [<Inputs key={key} {...props} />],
+  yieldValue: ({ key, name, value }) => <input key={key} type="hidden" name={name} value={value} />,
 };
 
 Inputs.displayName = 'Inputs';

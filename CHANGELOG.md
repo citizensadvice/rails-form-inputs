@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.3.0] 2024-06-19
+
+- React 18.3 support - resolve key warning on props spreading
+
 ## [v1.2.0] 2023-01-13
 
 - Added `toRailsFormData` to convert an object to a `FormData` instance

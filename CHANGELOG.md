@@ -1,5 +1,10 @@
 # Changelog
 
+## [v1.4.1] 2024-07-23
+
+- React 18.3 support - actually remove all the defaultProps
+- Also remove prop-types as it we use typescript and it won't be supported in React 19
+
 ## [v1.4.0] 2024-07-23
 
 - React 18.3 support - replace defaultProps with destructing defaults

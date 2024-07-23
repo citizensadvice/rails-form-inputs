@@ -1,34 +1,43 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
-import { InputsProps } from './types.js';
-import { generateData } from './generate_form_data.js';
+import React, { memo } from "react";
+import { InputsProps } from "./types.js";
+import { generateData } from "./generate_form_data.js";
 
-export const Inputs : React.FC<InputsProps> = memo(
+export const Inputs: React.FC<InputsProps> = memo(
   // Have to set the type as any because React.FC does not allow an array
   // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/41808
-  (props : InputsProps) => [...generateData(props)] as any,
+  ({
+    depth = 0,
+    prefix = "",
+    isArrayItem = false,
+    snakeCase = true,
+    yieldObject = defaultYieldObject, // eslint-disable-line @typescript-eslint/no-use-before-define
+    yieldValue = defaultYieldValue, // eslint-disable-line @typescript-eslint/no-use-before-define
+    ...props
+  }: InputsProps) =>
+    [
+      ...generateData({
+        depth,
+        prefix,
+        isArrayItem,
+        snakeCase,
+        yieldObject,
+        yieldValue,
+        ...props,
+      }),
+    ] as any,
 );
 
-Inputs.propTypes = {
-  prefix: PropTypes.string,
-  value: PropTypes.any.isRequired,
-  depth: PropTypes.number,
-  isArrayItem: PropTypes.bool,
-  snakeCase: PropTypes.bool,
-  transform: PropTypes.func,
-  yieldObject: PropTypes.func,
-  yieldValue: PropTypes.func,
-};
-
-Inputs.defaultProps = {
-  depth: 0,
-  prefix: '',
-  isArrayItem: false,
-  snakeCase: true,
-  transform: undefined,
+const defaultYieldObject = ({ key, ...props }: InputsProps) =>
   // eslint-disable-next-line react/jsx-props-no-spreading
-  yieldObject: ({ key, ...props }) => [<Inputs key={key} {...props} />],
-  yieldValue: ({ key, name, value }) => <input key={key} type="hidden" name={name} value={value} />,
-};
+  [<Inputs key={key} {...props} />];
+const defaultYieldValue = ({
+  key,
+  name,
+  value,
+}: {
+  key: React.Key;
+  name: string;
+  value: string;
+}) => <input key={key} type="hidden" name={name} value={value} />;
 
-Inputs.displayName = 'Inputs';
+Inputs.displayName = "Inputs";

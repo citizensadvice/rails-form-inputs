@@ -11,7 +11,7 @@ interface RailsFormInputsProps {
 }
 
 const RailsFormInputs : React.FC<RailsFormInputsProps> = memo(
-  ({ value, transform, snakeCase }: RailsFormInputsProps) => (
+  ({ value, transform, snakeCase = true }: RailsFormInputsProps) => (
     <Inputs value={value} transform={transform} snakeCase={snakeCase} />
   ),
 );
@@ -20,11 +20,6 @@ RailsFormInputs.propTypes = {
   value: PropTypes.object.isRequired,
   transform: PropTypes.func,
   snakeCase: PropTypes.bool,
-};
-
-RailsFormInputs.defaultProps = {
-  transform: undefined,
-  snakeCase: true,
 };
 
 RailsFormInputs.displayName = 'RailsFormInputs';

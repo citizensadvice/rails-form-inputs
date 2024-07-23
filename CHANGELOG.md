@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.4.0] 2024-07-23
+
+- React 18.3 support - replace defaultProps with destructing defaults
+
 ## [v1.3.0] 2024-06-19
 
 - React 18.3 support - resolve key warning on props spreading

@@ -23,8 +23,8 @@
     "@swc/cli": "^0.4.0",
     "@swc/jest": "^0.2.36",
     "@testing-library/react": "^16.0.0",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/parser": "^7.17.0",
     "eslint": "^8.31.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
@@ -38,7 +38,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.4"
   },
   "peerDependencies": {
     "prop-types": ">= 15.5.7",
@@ -63,7 +63,8 @@
       "no-restricted-syntax": "off",
       "react/forbid-prop-types": "off",
       "react/no-unused-prop-types": "off",
-      "react/react-in-jsx-scope": "off"
+      "react/react-in-jsx-scope": "off",
+      "react/require-default-props": "off"
     },
     "overrides": [
       {

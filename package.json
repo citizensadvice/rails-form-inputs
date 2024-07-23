@@ -1,6 +1,6 @@
 {
   "name": "@citizensadvice/rails-form-inputs",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "React component to turn an object into Rails compatible form inputs",
   "type": "module",
   "main": "./dist/index.js",

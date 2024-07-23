@@ -5,14 +5,12 @@
 A React component to turn an object into Rails compatible form inputs.
 
 ```js
-import RailsFormInputs from '@citizensadvice/rails-form-inputs';
+import RailsFormInputs from "@citizensadvice/rails-form-inputs";
 
 function Form() {
   return (
     <form>
-      <RailsFormInputs
-        value={{ myObject: { foo: 'bar' }, array: [1, 2] }}
-      />
+      <RailsFormInputs value={{ myObject: { foo: "bar" }, array: [1, 2] }} />
     </form>
   );
 }
@@ -32,7 +30,7 @@ Outputs:
 
 ```
 <RailsFormInputs
-  value={value: Object} 
+  value={value: Object}
   transform={tranform: (key: object, value: any) => void | [object, any] | false)}
   snakeCase={snakeCase = true: Boolean}
 />
@@ -50,10 +48,10 @@ Any properties with a value of `undefined` will be skipped.
 
 ### `transform`
 
-An optional transform function.  The arguments are the key and value pair.
+An optional transform function. The arguments are the key and value pair.
 
 - Return `false` to skip outputting that item
-- Return an array of `[key, value]` to change the key or value.  If you change the key it will not be snake cased.
+- Return an array of `[key, value]` to change the key or value. If you change the key it will not be snake cased.
 - Return undefined to continue as normal.
 
 ### `snakeCase`
@@ -65,11 +63,11 @@ If true (default) the keys will be converted to snake case.
 Convert the object to a `FormData` object.
 
 ```js
-import { toRailsFormData } from '@citizensadvice/rails-form-inputs';
+import { toRailsFormData } from "@citizensadvice/rails-form-inputs";
 
-const formData = toRailsFormData({ myObject: { foo: 'bar' }, array: [1, 2] });
+const formData = toRailsFormData({ myObject: { foo: "bar" }, array: [1, 2] });
 
-new URLSearchParams(formData).toString()
+new URLSearchParams(formData).toString();
 // => ?my_object[foo]=bar&array[]=1&array[]=2
 ```
 

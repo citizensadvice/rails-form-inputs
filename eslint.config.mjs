@@ -55,6 +55,10 @@ export default tseslint.config(
       ],
 
       "@typescript-eslint/no-explicit-any": "off",
+
+      "react/jsx-uses-react": "error",
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
     },
   },
   {
@@ -104,5 +108,5 @@ export default tseslint.config(
     rules: {
       "import/no-default-export": "off",
     },
-  }
+  },
 );

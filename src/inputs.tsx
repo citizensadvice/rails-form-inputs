@@ -10,8 +10,8 @@ export const Inputs: React.FC<InputsProps> = memo(
     prefix = "",
     isArrayItem = false,
     snakeCase = true,
-    yieldObject = defaultYieldObject, // eslint-disable-line @typescript-eslint/no-use-before-define
-    yieldValue = defaultYieldValue, // eslint-disable-line @typescript-eslint/no-use-before-define
+    yieldObject = defaultYieldObject,
+    yieldValue = defaultYieldValue,
     ...props
   }: InputsProps) =>
     [
@@ -27,9 +27,9 @@ export const Inputs: React.FC<InputsProps> = memo(
     ] as any,
 );
 
-const defaultYieldObject = ({ key, ...props }: InputsProps) =>
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  [<Inputs key={key} {...props} />];
+const defaultYieldObject = ({ key, ...props }: InputsProps) => [
+  <Inputs key={key} {...props} />,
+];
 const defaultYieldValue = ({
   key,
   name,

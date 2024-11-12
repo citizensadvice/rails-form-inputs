@@ -1,5 +1,5 @@
 import formToRackParams from "@citizensadvice/form-to-rack-params";
-import { toRailsFormData } from ".";
+import { toRailsFormData } from "./index.tsx";
 
 it("searialises a string", () => {
   const data = {
@@ -409,7 +409,7 @@ describe.each([
 ])("%s", (query, object) => {
   it("is generated from object", () => {
     expect(
-      decodeURI(new URLSearchParams(toRailsFormData(object)).toString()),
+      decodeURI(new URLSearchParams(toRailsFormData(object)).toString())
     ).toEqual(query);
   });
 });

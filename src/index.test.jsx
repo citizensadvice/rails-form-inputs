@@ -1,6 +1,6 @@
 import React, { screen, render } from "@testing-library/react";
 import formToRackParams from "@citizensadvice/form-to-rack-params";
-import RailsFormInputs from ".";
+import RailsFormInputs from "./index.tsx";
 
 function Form(props) {
   return (
@@ -447,8 +447,8 @@ describe.each([
     render(<Form value={object} />);
     expect(
       decodeURI(
-        new URLSearchParams(new FormData(screen.getByRole("form"))).toString(),
-      ),
+        new URLSearchParams(new FormData(screen.getByRole("form"))).toString()
+      )
     ).toEqual(query);
   });
 });

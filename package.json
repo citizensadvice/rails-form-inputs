@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "lint": "npm run lint:format && npm run lint:js",
-    "lint:js": "eslint . --ext .ts --ext .tsx --ext .js --ext .jsx && tsc --noEmit",
+    "lint:js": "eslint . && tsc --noEmit",
     "lint:format": "prettier . --check",
     "test": "jest",
     "format": "prettier . --write",
@@ -23,87 +23,27 @@
   "license": "ISC",
   "devDependencies": {
     "@citizensadvice/form-to-rack-params": "v1.2.0",
-    "@swc/cli": "^0.4.0",
+    "@eslint-community/eslint-plugin-eslint-comments": "^4.4.1",
+    "@swc/cli": "^0.5.0",
     "@swc/jest": "^0.2.36",
     "@testing-library/react": "^16.0.0",
-    "@typescript-eslint/eslint-plugin": "^7.17.0",
-    "@typescript-eslint/parser": "^7.17.0",
-    "eslint": "^8.31.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^28.6.0",
+    "eslint-plugin-jest-dom": "^5.4.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.3",
-    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-testing-library": "^6.2.2",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.14.0"
   },
   "peerDependencies": {
     "react": ">= 15"
-  },
-  "eslintConfig": {
-    "extends": [
-      "airbnb",
-      "airbnb/hooks",
-      "airbnb-typescript",
-      "prettier"
-    ],
-    "env": {
-      "browser": true
-    },
-    "parserOptions": {
-      "ecmaVersion": "latest",
-      "project": "./tsconfig.json"
-    },
-    "rules": {
-      "import/prefer-default-export": "off",
-      "no-continue": "off",
-      "no-restricted-syntax": "off",
-      "react/forbid-prop-types": "off",
-      "react/no-unused-prop-types": "off",
-      "react/react-in-jsx-scope": "off",
-      "react/require-default-props": "off",
-      "react/prop-types": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/*.test.{jsx,js}"
-        ],
-        "env": {
-          "jest": true
-        },
-        "plugins": [
-          "jest"
-        ],
-        "extends": [
-          "plugin:jest/recommended",
-          "plugin:testing-library/react"
-        ],
-        "rules": {
-          "react/jsx-no-bind": "off",
-          "react/jsx-props-no-spreading": "off"
-        }
-      }
-    ]
-  },
-  "jest": {
-    "restoreMocks": true,
-    "transform": {
-      "^.+\\.(t|j)sx?$": [
-        "@swc/jest"
-      ]
-    },
-    "testEnvironment": "jsdom",
-    "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(?!@citizensadvice/form-to-rack-params.*)"
-    ]
   },
   "np": {
     "yarn": false

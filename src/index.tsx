@@ -1,7 +1,7 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 
-import { Inputs } from "./inputs.js";
-import { Data, Transform } from "./types.ts";
+import { Inputs } from './inputs.js';
+import { Data, Transform } from './types.ts';
 
 interface RailsFormInputsProps {
   value: Data;
@@ -15,7 +15,7 @@ const RailsFormInputs: React.FC<RailsFormInputsProps> = memo(
   ),
 );
 
-RailsFormInputs.displayName = "RailsFormInputs";
+RailsFormInputs.displayName = 'RailsFormInputs';
 
 export default RailsFormInputs;
-export { toRailsFormData } from "./to_rails_form_data.js";
+export { toRailsFormData } from './to_rails_form_data.js';

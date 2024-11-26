@@ -49,6 +49,9 @@
   "np": {
     "yarn": false
   },
+  "prettier": {
+    "singleQuote": true
+  },
   "publishConfig": {
     "access": "public"
   }

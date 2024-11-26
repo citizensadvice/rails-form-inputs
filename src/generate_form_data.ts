@@ -1,5 +1,5 @@
-import { underscore } from "./underscore.js";
-import { InputsProps, FormDataItem } from "./types.js";
+import { underscore } from './underscore.js';
+import { InputsProps, FormDataItem } from './types.js';
 
 function emptyArray(item: any): boolean {
   return (
@@ -10,7 +10,7 @@ function emptyArray(item: any): boolean {
 
 export function* generateData({
   value,
-  prefix = "",
+  prefix = '',
   depth = 0,
   isArrayItem = false,
   transform,
@@ -18,7 +18,7 @@ export function* generateData({
   yieldObject = generateData,
   yieldValue = (v) => v,
 }: InputsProps): Generator<FormDataItem, undefined, unknown> {
-  if (!value || typeof value !== "object") {
+  if (!value || typeof value !== 'object') {
     return;
   }
   const iterator: Iterable<any> =
@@ -56,12 +56,12 @@ export function* generateData({
     if (depth === 0) {
       name += keepKey || !snakeCase ? property : underscore(property);
     } else if (isArrayItem) {
-      name += "[]";
+      name += '[]';
     } else {
       // The escaping rules for [ and ] in a name are based on rack test suite
       // https://github.com/rack/rack/blob/main/test/spec_utils.rb describe.each([
       const part = keepKey || !snakeCase ? property : underscore(property);
-      if ((part.includes("[") || part.includes("]")) && part[0] !== "[") {
+      if ((part.includes('[') || part.includes(']')) && part[0] !== '[') {
         name += part;
       } else {
         name += `[${part}]`;
@@ -77,10 +77,10 @@ export function* generateData({
       // For an empty array, include a default item for arrays so Rails will know they are empty
       key = `${key}[]`;
       name = `${name}[]`;
-      item = "";
+      item = '';
     } else if (
       item !== null &&
-      typeof item === "object" &&
+      typeof item === 'object' &&
       !(item instanceof Date)
     ) {
       yield* yieldObject({
@@ -94,13 +94,13 @@ export function* generateData({
       });
       continue;
     } else if (Number.isNaN(item)) {
-      item = "";
+      item = '';
     } else if (item instanceof Date) {
       item = item.toISOString();
-    } else if (typeof item === "boolean") {
-      item = item ? "1" : "0";
+    } else if (typeof item === 'boolean') {
+      item = item ? '1' : '0';
     } else {
-      item = String(item ?? "");
+      item = String(item ?? '');
     }
 
     yield yieldValue({ name, value: item, key });

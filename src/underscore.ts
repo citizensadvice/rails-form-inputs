@@ -7,6 +7,6 @@ export function underscore(value: string): string {
       /([A-Z\d]+)(?=[A-Z][a-z])|([a-z\d])(?=[A-Z])/g,
       (_, m1, m2) => `${m1 || m2}_`,
     )
-    .replace(/-/g, "_")
+    .replace(/-/g, '_')
     .toLowerCase();
 }

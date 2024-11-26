@@ -1,10 +1,10 @@
 export default {
   restoreMocks: true,
   transform: {
-    "^.+\\.(t|j)sx?$": ["@swc/jest"],
+    '^.+\\.(t|j)sx?$': ['@swc/jest'],
   },
-  testEnvironment: "jsdom",
+  testEnvironment: 'jsdom',
   transformIgnorePatterns: [
-    "<rootDir>/node_modules/(?!@citizensadvice/form-to-rack-params.*)",
+    '<rootDir>/node_modules/(?!@citizensadvice/form-to-rack-params.*)',
   ],
 };

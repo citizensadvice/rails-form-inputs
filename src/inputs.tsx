@@ -1,13 +1,13 @@
-import React, { memo } from "react";
-import { InputsProps } from "./types.js";
-import { generateData } from "./generate_form_data.js";
+import React, { memo } from 'react';
+import { InputsProps } from './types.js';
+import { generateData } from './generate_form_data.js';
 
 export const Inputs: React.FC<InputsProps> = memo(
   // Have to set the type as any because React.FC does not allow an array
   // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/41808
   ({
     depth = 0,
-    prefix = "",
+    prefix = '',
     isArrayItem = false,
     snakeCase = true,
     yieldObject = defaultYieldObject,
@@ -40,4 +40,4 @@ const defaultYieldValue = ({
   value: string;
 }) => <input key={key} type="hidden" name={name} value={value} />;
 
-Inputs.displayName = "Inputs";
+Inputs.displayName = 'Inputs';

@@ -1,5 +1,5 @@
-import { generateData } from "./generate_form_data.js";
-import { Data, Transform } from "./types.js";
+import { generateData } from './generate_form_data.js';
+import { Data, Transform } from './types.js';
 
 interface ToFormDataOptions {
   transform?: Transform;

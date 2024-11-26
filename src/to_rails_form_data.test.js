@@ -409,7 +409,7 @@ describe.each([
 ])("%s", (query, object) => {
   it("is generated from object", () => {
     expect(
-      decodeURI(new URLSearchParams(toRailsFormData(object)).toString())
+      decodeURI(new URLSearchParams(toRailsFormData(object)).toString()),
     ).toEqual(query);
   });
 });

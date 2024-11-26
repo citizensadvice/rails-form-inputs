@@ -447,8 +447,8 @@ describe.each([
     render(<Form value={object} />);
     expect(
       decodeURI(
-        new URLSearchParams(new FormData(screen.getByRole("form"))).toString()
-      )
+        new URLSearchParams(new FormData(screen.getByRole("form"))).toString(),
+      ),
     ).toEqual(query);
   });
 });

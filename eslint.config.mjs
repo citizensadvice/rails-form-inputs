@@ -12,6 +12,16 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
+    files: [
+      "**/*.js",
+      "**/*.jsx",
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.mjs",
+      "**/*.cjs",
+    ],
+  },
+  {
     ignores: ["node_modules", "dist"],
   },
   js.configs.recommended,
@@ -108,5 +118,5 @@ export default tseslint.config(
     rules: {
       "import/no-default-export": "off",
     },
-  },
+  }
 );

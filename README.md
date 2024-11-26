@@ -5,12 +5,12 @@
 A React component to turn an object into Rails compatible form inputs.
 
 ```js
-import RailsFormInputs from "@citizensadvice/rails-form-inputs";
+import RailsFormInputs from '@citizensadvice/rails-form-inputs';
 
 function Form() {
   return (
     <form>
-      <RailsFormInputs value={{ myObject: { foo: "bar" }, array: [1, 2] }} />
+      <RailsFormInputs value={{ myObject: { foo: 'bar' }, array: [1, 2] }} />
     </form>
   );
 }
@@ -63,9 +63,9 @@ If true (default) the keys will be converted to snake case.
 Convert the object to a `FormData` object.
 
 ```js
-import { toRailsFormData } from "@citizensadvice/rails-form-inputs";
+import { toRailsFormData } from '@citizensadvice/rails-form-inputs';
 
-const formData = toRailsFormData({ myObject: { foo: "bar" }, array: [1, 2] });
+const formData = toRailsFormData({ myObject: { foo: 'bar' }, array: [1, 2] });
 
 new URLSearchParams(formData).toString();
 // => ?my_object[foo]=bar&array[]=1&array[]=2

@@ -9,10 +9,6 @@
       "react": {
         "runtime": "automatic"
       }
-    },
-    "baseUrl": ".",
-    "paths": {
-      "*.js": ["*", "*.js"]
     }
   }
 }

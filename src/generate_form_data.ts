@@ -1,5 +1,5 @@
 import { underscore } from './underscore.js';
-import { InputsProps, FormDataItem } from './types.js';
+import type { InputsProps, FormDataItem } from './types.js';
 
 function emptyArray(item: any): boolean {
   return (

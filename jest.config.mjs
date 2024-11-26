@@ -1,5 +1,8 @@
 export default {
   restoreMocks: true,
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
   transform: {
     '^.+\\.(t|j)sx?$': ['@swc/jest'],
   },

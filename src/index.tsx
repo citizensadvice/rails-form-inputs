@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
 import { Inputs } from './inputs.js';
-import { Data, Transform } from './types.ts';
+import type { Data, Transform } from './types.js';
 
 interface RailsFormInputsProps {
   value: Data;

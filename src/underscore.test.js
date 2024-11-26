@@ -1,4 +1,4 @@
-import { underscore } from './underscore';
+import { underscore } from './underscore.ts';
 
 // These tests come from rails
 // https://github.com/rails/rails/blob/a76344ffc5a308e0ad6105fde921990f57fa0ea9/activesupport/test/inflector_test.rb#L194

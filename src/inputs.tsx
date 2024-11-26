@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { InputsProps } from './types.js';
 import { generateData } from './generate_form_data.js';
+import type { InputsProps } from './types.js';
 
 export const Inputs: React.FC<InputsProps> = memo(
   // Have to set the type as any because React.FC does not allow an array

@@ -1,5 +1,5 @@
 import formToRackParams from '@citizensadvice/form-to-rack-params';
-import { toRailsFormData } from './index.tsx';
+import { toRailsFormData } from './index';
 
 it('searialises a string', () => {
   const data = {

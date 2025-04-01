@@ -11,6 +11,9 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
+        exclude-patterns:
+          - 'react'
+          - 'react-dom'
 
       # Must be updated together
       react:
